@@ -2,7 +2,7 @@
 lgbm_trainer.py
 ================
 Entrena un metamodelo LightGBM para predecir DBO en función de las
-16 variables sensibles + distancia x_km.
+11 variables sensibles + distancia x_km.
 
 Ventajas sobre XGBoost en datasets grandes:
   - Histogram-based: agrupa valores continuos en bins antes de buscar splits

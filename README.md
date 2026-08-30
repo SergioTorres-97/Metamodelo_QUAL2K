@@ -98,7 +98,7 @@ Metamodelo_QUAL2K/
 ├── caso_estudio_t_rio_jordan/         # Caso de estudio: tramo T1, río Jordán
 │   ├── t_rio_jordan_simulacion.json   # Configuración base calibrada del tramo T1
 │   ├── t_rio_jordan_simulacion.py     # Corre una simulación individual (JSON)
-│   ├── t_rio_jordan_sensibilidad.py   # Análisis de sensibilidad (36 parámetros, LHS+SRCC)
+│   ├── t_rio_jordan_sensibilidad.py   # Análisis de sensibilidad (33 parámetros, LHS+SRCC)
 │   ├── t_rio_jordan_metamodelo_bd.py  # Genera la BD SQLite de escenarios (LHS)
 │   └── t_rio_jordan_costo_computacional.py  # QUAL2K vs metamodelo: tiempos de cómputo
 │
@@ -166,10 +166,10 @@ Metodología completa en `docs/metodologia.md` (local, no publicada). Resumen ej
 # 1. Simulación individual del tramo T1 (config. calibrada)
 python caso_estudio_t_rio_jordan/t_rio_jordan_simulacion.py
 
-# 2. Análisis de sensibilidad global (LHS + SRCC, 36 parámetros)
+# 2. Análisis de sensibilidad global (LHS + SRCC, 33 parámetros)
 python caso_estudio_t_rio_jordan/t_rio_jordan_sensibilidad.py
 
-# 3. Generar la base de datos de entrenamiento (LHS sobre 16 variables sensibles)
+# 3. Generar la base de datos de entrenamiento (LHS sobre 11 variables sensibles)
 python caso_estudio_t_rio_jordan/t_rio_jordan_metamodelo_bd.py --n 6000
 
 # 4. Entrenar un metamodelo (ejemplo: XGBoost, con búsqueda de hiperparámetros)
@@ -187,7 +187,7 @@ Cada script en `caso_estudio_t_rio_jordan/` y `metamodelo/` imprime sus rutas de
 
 ### App interactiva
 
-`app_streamlit.py` sirve directamente el metamodelo de red neuronal ya entrenado (no ejecuta QUAL2K/FORTRAN): permite ajustar los 16 predictores del tramo con sliders y predecir la DBO en uno o varios puntos longitudinales, con su intervalo de predicción al 95 % (conformal prediction). Requiere que `resultados/t_rio_jordan_metamodelo/` contenga `nn_dbo.pt`, `nn_scaler_x.joblib`, `nn_scaler_y.joblib` y `nn_conformal.json` (generados por `metamodelo/nn_trainer.py`).
+`app_streamlit.py` sirve directamente el metamodelo de red neuronal ya entrenado (no ejecuta QUAL2K/FORTRAN): permite ajustar los 11 predictores del tramo con sliders y predecir la DBO en uno o varios puntos longitudinales, con su intervalo de predicción al 95 % (conformal prediction). Requiere que `resultados/t_rio_jordan_metamodelo/` contenga `nn_dbo.pt`, `nn_scaler_x.joblib`, `nn_scaler_y.joblib` y `nn_conformal.json` (generados por `metamodelo/nn_trainer.py`).
 
 ---
 

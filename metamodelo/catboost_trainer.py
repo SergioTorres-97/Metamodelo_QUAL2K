@@ -2,7 +2,7 @@
 catboost_trainer.py
 ====================
 Entrena un metamodelo CatBoost para predecir DBO en función de las
-16 variables sensibles + distancia x_km.
+11 variables sensibles + distancia x_km.
 
 Diferencias respecto a LGBM/XGBoost:
   - Ordered boosting: construye cada árbol sobre un subconjunto aleatorio

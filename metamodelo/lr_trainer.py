@@ -2,7 +2,7 @@
 lr_trainer.py
 =============
 Entrena un metamodelo de Regresión Lineal (OLS / Ridge / Lasso) para predecir
-DBO (mg/L) en función de las 16 variables sensibles + distancia x_km.
+DBO (mg/L) en función de las 11 variables sensibles + distancia x_km.
 
 Target en escala original (mg/L), sin transformación logarítmica.
 

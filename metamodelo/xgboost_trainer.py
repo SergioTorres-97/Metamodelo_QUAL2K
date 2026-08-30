@@ -2,7 +2,7 @@
 xgboost_trainer.py
 ===================
 Entrena un metamodelo XGBoost para predecir DBO en función de las
-16 variables sensibles + distancia x_km.
+11 variables sensibles + distancia x_km.
 
 Transformación del target:
     La DBO tiene distribución asimétrica (cola derecha larga).

@@ -12,7 +12,7 @@ en análisis que requieren muchas corridas (Monte Carlo, calibración
 global, análisis de incertidumbre).
 
 Metodología:
-  1. Genera N escenarios aleatorios (LHS) sobre las mismas 16 variables
+  1. Genera N escenarios aleatorios (LHS) sobre las mismas 11 variables
      sensibles usadas para construir la BD de entrenamiento
      (caso_estudio_t_rio_jordan/t_rio_jordan_metamodelo_bd.py).
   2. Para cada escenario:

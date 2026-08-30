@@ -197,7 +197,7 @@ col_titulo, col_logo = st.columns([4, 1])
 with col_titulo:
     st.markdown(
         "<h1 style='text-align: center;'>Metamodelo del software QUAL2K "
-        "(Tramo inicial Río Chicamocha)</h1>",
+        "(Tramo T1 Río Jordán)</h1>",
         unsafe_allow_html=True,
     )
     st.markdown(
