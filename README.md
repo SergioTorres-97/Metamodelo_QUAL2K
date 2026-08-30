@@ -1,8 +1,26 @@
-# PYQ2K — Interfaz Python para QUAL2K
+# Metamodelo QUAL2K
 
-PYQ2K es una interfaz en Python para el modelo de calidad de agua **QUAL2K**, cuyo motor de cálculo es un ejecutable FORTRAN. Automatiza la preparación de datos desde plantillas Excel o JSON, la ejecución del modelo, el análisis de resultados y la calibración mediante algoritmo genético.
+**Desarrollo de un metamodelo basado en simulaciones de QUAL2K para la estimación de la DBO en el río Jordán – Tunja**
 
-Sobre esa base se construyó, para el caso de estudio del tramo T1 del río Jordán, un flujo completo de **análisis de sensibilidad global**, generación de una **base de datos de escenarios**, entrenamiento y optimización de **metamodelos** (XGBoost, LightGBM, CatBoost y una red neuronal), validación de su **eficiencia computacional** frente a QUAL2K, y una **aplicación interactiva** (Streamlit) que sirve el metamodelo entrenado.
+Proyecto de grado — Maestría en Ciencia de Datos
+Escuela Colombiana de Ingeniería Julio Garavito
+
+**Autor:** Sergio Torres
+**Año:** 2026
+
+---
+
+## Descripción general
+
+Este repositorio contiene el desarrollo completo del proyecto de grado: una interfaz en Python para el modelo de calidad de agua **QUAL2K** (cuyo motor de cálculo es un ejecutable FORTRAN), construida para automatizar la preparación de datos, la ejecución del modelo, el análisis de resultados y la calibración mediante algoritmo genético.
+
+Sobre esa base se construyó, para el caso de estudio del **tramo T1 del río Jordán** (Tunja), un flujo completo de:
+
+- **Análisis de sensibilidad global** (LHS + SRCC) para identificar los predictores más influyentes sobre la DBO.
+- Generación de una **base de datos de escenarios** simulados con QUAL2K.
+- Entrenamiento y optimización de **metamodelos** de aprendizaje automático (XGBoost, LightGBM, CatBoost y una red neuronal) que aproximan la respuesta de QUAL2K.
+- Validación de su **eficiencia computacional** frente al modelo mecanicista.
+- Una **aplicación interactiva** (Streamlit) que sirve el metamodelo entrenado para predicción de DBO en tiempo real.
 
 La metodología detallada de todo este flujo — no solo el resumen de este README — está en **[`docs/metodologia.md`](docs/metodologia.md)**.
 
@@ -13,8 +31,8 @@ La metodología detallada de todo este flujo — no solo el resumen de este READ
 ### 1. Clonar el repositorio
 
 ```bash
-git clone https://github.com/SergioTorres-97/PYQ2K.git
-cd PYQ2K
+git clone https://github.com/SergioTorres-97/Metamodelo_QUAL2K.git
+cd Metamodelo_QUAL2K
 ```
 
 ### 2. Crear entorno virtual e instalar dependencias
@@ -50,7 +68,7 @@ El ejecutable FORTRAN `bin/q2kfortran2_12.exe` **sí está incluido** y se copia
 ## Estructura del proyecto
 
 ```
-PYQ2K/
+Metamodelo_QUAL2K/
 ├── bin/
 │   └── q2kfortran2_12.exe            # Ejecutable FORTRAN (motor de cálculo)
 │
@@ -72,7 +90,7 @@ PYQ2K/
 │       └── metricas.py                # KGE, NSE, RMSE, PBIAS (calibración QUAL2K)
 │
 ├── model/                             # Ejecución directa (vía plantillas Excel)
-│   └── modelo_chicamocha.py           # Río Chicamocha, 7 reaches, calibrado
+│   └── modelo_chicamocha.py           # Río Chicamocha completo, 7 reaches, calibrado (comprobación)
 │
 ├── scripts/                           # Motores reutilizables (vía JSON)
 │   ├── run_from_json.py               # Corre una simulación QUAL2K desde un JSON
@@ -80,11 +98,11 @@ PYQ2K/
 │   ├── figura_srcc_explicacion.py     # Figura didáctica: cómo se calcula el SRCC espacial
 │   └── lr_diagnostico.py              # Diagnóstico de supuestos de regresión lineal
 │
-├── caso_estudio_t_rio_jordan/        # Caso de estudio Río Jordán T1
-│   ├── t_rio_jordan_simulacion.json  # Configuración base calibrada del tramo T1
-│   ├── t_rio_jordan_simulacion.py    # Corre una simulación individual (JSON)
-│   ├── t_rio_jordan_sensibilidad.py  # Análisis de sensibilidad (36 parámetros, LHS+SRCC)
-│   ├── t_rio_jordan_metamodelo_bd.py # Genera la BD SQLite de escenarios (LHS)
+├── caso_estudio_t_rio_jordan/         # Caso de estudio: tramo T1, río Jordán
+│   ├── t_rio_jordan_simulacion.json   # Configuración base calibrada del tramo T1
+│   ├── t_rio_jordan_simulacion.py     # Corre una simulación individual (JSON)
+│   ├── t_rio_jordan_sensibilidad.py   # Análisis de sensibilidad (36 parámetros, LHS+SRCC)
+│   ├── t_rio_jordan_metamodelo_bd.py  # Genera la BD SQLite de escenarios (LHS)
 │   └── t_rio_jordan_costo_computacional.py  # QUAL2K vs metamodelo: tiempos de cómputo
 │
 ├── metamodelo/                        # Entrenamiento de metamodelos de DBO
@@ -98,7 +116,7 @@ PYQ2K/
 │   └── exportar.py                    # Exporta la BD SQLite completa a Excel
 │
 ├── app_streamlit.py                   # App interactiva: predicción de DBO con el metamodelo NN
-├── assets/logo_escuela.png            # Logo usado por la app
+├── assets/logo_escuela.png            # Logo institucional usado por la app
 ├── .streamlit/config.toml             # Tema visual de la app
 │
 ├── docs/
@@ -138,9 +156,11 @@ PlantillaBaseQ2K.xlsx  o  configuracion.json
 
 ---
 
-## Caso de estudio: sistema fluvial Jordán-Chicamocha
+## Caso de estudio: tramo T1 del río Jordán (Tunja)
 
-Incluye la calibración del modelo QUAL2K para el río Chicamocha completo (7 reaches, `model/modelo_chicamocha.py`), y un análisis detallado del **tramo T1 del río Jordán** (`CABECERA` → `PLAYA ARRIBA`, 28.57 km, `caso_estudio_t_rio_jordan/t_rio_jordan_*`) sobre el cual se construyó todo el flujo de metamodelado.
+El río Jordán es el cauce urbano que atraviesa Tunja y recibe sus principales vertimientos (bypass y efluente tratado de la PTAR Veolia, entre otros) antes de tributar al río Chicamocha. El tramo T1 (`CABECERA` → `PLAYA ARRIBA`, 28.57 km) es el objeto de estudio central de este proyecto: sobre él se construyó todo el flujo de análisis de sensibilidad, generación de escenarios y entrenamiento de metamodelos.
+
+El repositorio incluye además, de forma independiente, la calibración del modelo QUAL2K para el **río Chicamocha completo** (7 reaches, `model/modelo_chicamocha.py`), usada como modelo de comprobación adicional y no como parte del flujo de metamodelado.
 
 La métrica de calibración principal es el **KGE (Kling-Gupta Efficiency)**, calculado sobre múltiples parámetros de calidad del agua (OD, DBO, NTK, NH₄, fósforo, *E. coli*, entre otros).
 
@@ -195,3 +215,11 @@ Cada script en `caso_estudio_t_rio_jordan/` y `metamodelo/` imprime sus rutas de
 | `streamlit` | App interactiva de predicción |
 
 Ver [`qual2k/requirements.txt`](qual2k/requirements.txt) para versiones exactas.
+
+---
+
+## Autoría
+
+Proyecto de grado de la **Maestría en Ciencia de Datos**, Escuela Colombiana de Ingeniería Julio Garavito.
+
+**Sergio Torres** — 2026
