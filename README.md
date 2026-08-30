@@ -41,7 +41,7 @@ Los scripts que usan plantillas Excel (`model/modelo_chicamocha.py`, `tests/*.py
 data/templates/<nombre_tramo>/PlantillaBaseQ2K.xlsx
 ```
 
-Los scripts basados en JSON (`examples/`, `scripts/sensibilidad.py`) no requieren estas plantillas — usan `examples/chicamocha_t1_simulacion.json` directamente.
+Los scripts basados en JSON (`caso_estudio_chicamocha_t1/`, `scripts/sensibilidad.py`) no requieren estas plantillas — usan `caso_estudio_chicamocha_t1/chicamocha_t1_simulacion.json` directamente.
 
 El ejecutable FORTRAN `bin/q2kfortran2_12.exe` **sí está incluido** y se copia automáticamente al directorio de trabajo al ejecutar cada simulación.
 
@@ -80,7 +80,7 @@ PYQ2K/
 │   ├── figura_srcc_explicacion.py     # Figura didáctica: cómo se calcula el SRCC espacial
 │   └── lr_diagnostico.py              # Diagnóstico de supuestos de regresión lineal
 │
-├── examples/                          # Caso de estudio Chicamocha T1
+├── caso_estudio_chicamocha_t1/        # Caso de estudio Chicamocha T1
 │   ├── chicamocha_t1_simulacion.json  # Configuración base calibrada del tramo T1
 │   ├── chicamocha_t1_simulacion.py    # Corre una simulación individual (JSON)
 │   ├── chicamocha_t1_sensibilidad.py  # Análisis de sensibilidad (36 parámetros, LHS+SRCC)
@@ -140,7 +140,7 @@ PlantillaBaseQ2K.xlsx  o  configuracion.json
 
 ## Caso de estudio: cuenca del río Chicamocha
 
-Incluye la calibración del modelo QUAL2K para el río Chicamocha completo (7 reaches, `model/modelo_chicamocha.py`), y un análisis detallado del **tramo T1** (`CABECERA` → `PLAYA ABAJO`, 28.57 km, `examples/chicamocha_t1_*`) sobre el cual se construyó todo el flujo de metamodelado.
+Incluye la calibración del modelo QUAL2K para el río Chicamocha completo (7 reaches, `model/modelo_chicamocha.py`), y un análisis detallado del **tramo T1** (`CABECERA` → `PLAYA ABAJO`, 28.57 km, `caso_estudio_chicamocha_t1/chicamocha_t1_*`) sobre el cual se construyó todo el flujo de metamodelado.
 
 La métrica de calibración principal es el **KGE (Kling-Gupta Efficiency)**, calculado sobre múltiples parámetros de calidad del agua (OD, DBO, NTK, NH₄, fósforo, *E. coli*, entre otros).
 
@@ -152,26 +152,26 @@ Metodología completa en **[`docs/metodologia.md`](docs/metodologia.md)**. Resum
 
 ```bash
 # 1. Simulación individual del tramo T1 (config. calibrada)
-python examples/chicamocha_t1_simulacion.py
+python caso_estudio_chicamocha_t1/chicamocha_t1_simulacion.py
 
 # 2. Análisis de sensibilidad global (LHS + SRCC, 36 parámetros)
-python examples/chicamocha_t1_sensibilidad.py
+python caso_estudio_chicamocha_t1/chicamocha_t1_sensibilidad.py
 
 # 3. Generar la base de datos de entrenamiento (LHS sobre 16 variables sensibles)
-python examples/chicamocha_t1_metamodelo_bd.py --n 6000
+python caso_estudio_chicamocha_t1/chicamocha_t1_metamodelo_bd.py --n 6000
 
 # 4. Entrenar un metamodelo (ejemplo: XGBoost, con búsqueda de hiperparámetros)
 python metamodelo/xgboost_trainer.py
 # variantes equivalentes: lgbm_trainer.py, catboost_trainer.py, nn_trainer.py
 
 # 5. Comparar el costo computacional QUAL2K vs metamodelo (NN)
-python examples/chicamocha_t1_costo_computacional.py --n 100
+python caso_estudio_chicamocha_t1/chicamocha_t1_costo_computacional.py --n 100
 
 # 6. App interactiva de predicción (sirve el metamodelo NN entrenado)
 streamlit run app_streamlit.py
 ```
 
-Cada script en `examples/` y `metamodelo/` imprime sus rutas de salida (Excel, figuras, modelos serializados) en `resultados/chicamocha_t1_sensibilidad/` y `resultados/chicamocha_t1_metamodelo/`.
+Cada script en `caso_estudio_chicamocha_t1/` y `metamodelo/` imprime sus rutas de salida (Excel, figuras, modelos serializados) en `resultados/chicamocha_t1_sensibilidad/` y `resultados/chicamocha_t1_metamodelo/`.
 
 ### App interactiva
 

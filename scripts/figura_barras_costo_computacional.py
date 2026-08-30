@@ -7,7 +7,7 @@ QUAL2K vs. el metamodelo (red neuronal), en funcion del numero de corridas
 acumulada) con una lectura mas directa para comparar barras.
 
 Usa los datos ya calculados en costo_computacional.xlsx (hoja
-'extrapolacion'), generados por examples/chicamocha_t1_costo_computacional.py
+'extrapolacion'), generados por caso_estudio_chicamocha_t1/chicamocha_t1_costo_computacional.py
 -- no vuelve a correr el benchmark ni QUAL2K.
 
 Uso:

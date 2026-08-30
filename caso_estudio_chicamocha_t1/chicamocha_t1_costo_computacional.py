@@ -14,7 +14,7 @@ global, análisis de incertidumbre).
 Metodología:
   1. Genera N escenarios aleatorios (LHS) sobre las mismas 16 variables
      sensibles usadas para construir la BD de entrenamiento
-     (examples/chicamocha_t1_metamodelo_bd.py).
+     (caso_estudio_chicamocha_t1/chicamocha_t1_metamodelo_bd.py).
   2. Para cada escenario:
        - Corre QUAL2K completo (escritura config + ejecución FORTRAN +
          lectura de resultados) y mide el tiempo de pared.
@@ -29,8 +29,8 @@ para comparar en igualdad de condiciones de hardware con QUAL2K, que
 corre en CPU. Con GPU el metamodelo sería aún más rápido.
 
 Uso:
-    python examples/chicamocha_t1_costo_computacional.py
-    python examples/chicamocha_t1_costo_computacional.py --n 30 --seed 7
+    python caso_estudio_chicamocha_t1/chicamocha_t1_costo_computacional.py
+    python caso_estudio_chicamocha_t1/chicamocha_t1_costo_computacional.py --n 30 --seed 7
 """
 
 from __future__ import annotations
@@ -58,8 +58,8 @@ import matplotlib.pyplot as plt
 _ROOT = Path(__file__).resolve().parent.parent
 if str(_ROOT) not in sys.path:
     sys.path.insert(0, str(_ROOT))
-if str(_ROOT / "examples") not in sys.path:
-    sys.path.insert(0, str(_ROOT / "examples"))
+if str(_ROOT / "caso_estudio_chicamocha_t1") not in sys.path:
+    sys.path.insert(0, str(_ROOT / "caso_estudio_chicamocha_t1"))
 
 # Reutiliza el generador de escenarios LHS y el runner de QUAL2K ya
 # escritos para construir la BD de entrenamiento — misma parametrización,

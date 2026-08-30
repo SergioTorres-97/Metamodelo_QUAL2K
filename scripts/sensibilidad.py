@@ -63,7 +63,7 @@ Uso básico
     ]
 
     df_srcc = analisis_sensibilidad(
-        json_base    = "examples/chicamocha_simulacion.json",
+        json_base    = "caso_estudio_chicamocha_t1/chicamocha_simulacion.json",
         parametros   = parametros,
         n            = 100,
         output_dir   = "resultados/sensibilidad",

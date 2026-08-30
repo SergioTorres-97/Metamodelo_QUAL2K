@@ -43,9 +43,9 @@ Variables sensibles (rangos tomados de chicamocha_t1_sensibilidad.py):
 Variables no sensibles → fijas en su valor calibrado (JSON base).
 
 Uso:
-    python examples/chicamocha_t1_metamodelo_bd.py
-    python examples/chicamocha_t1_metamodelo_bd.py --n 500 --seed 99
-    python examples/chicamocha_t1_metamodelo_bd.py --n 100 --continuar
+    python caso_estudio_chicamocha_t1/chicamocha_t1_metamodelo_bd.py
+    python caso_estudio_chicamocha_t1/chicamocha_t1_metamodelo_bd.py --n 500 --seed 99
+    python caso_estudio_chicamocha_t1/chicamocha_t1_metamodelo_bd.py --n 100 --continuar
 """
 
 from __future__ import annotations
@@ -78,7 +78,7 @@ _ROOT = Path(__file__).resolve().parent.parent
 if str(_ROOT) not in sys.path:
     sys.path.insert(0, str(_ROOT))
 
-JSON_BASE  = str(_ROOT / "examples" / "chicamocha_t1_simulacion.json")
+JSON_BASE  = str(_ROOT / "caso_estudio_chicamocha_t1" / "chicamocha_t1_simulacion.json")
 OUTPUT_DIR = str(_ROOT / "resultados" / "chicamocha_t1_metamodelo")
 BD_PATH    = str(Path(OUTPUT_DIR) / "simulaciones_Q2K.db")
 TABLA      = "simulaciones"

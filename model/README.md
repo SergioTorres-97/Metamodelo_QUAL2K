@@ -29,7 +29,7 @@ imprime el KGE (Kling-Gupta Efficiency) global de la calibración.
 
 Para correr una simulación equivalente a partir de un archivo JSON de
 configuración (en vez de las plantillas Excel), ver
-[`examples/chicamocha_t1_simulacion.py`](../examples/chicamocha_t1_simulacion.py)
+[`caso_estudio_chicamocha_t1/chicamocha_t1_simulacion.py`](../caso_estudio_chicamocha_t1/chicamocha_t1_simulacion.py)
 y `scripts/run_from_json.py`.
 
 ## Requisitos

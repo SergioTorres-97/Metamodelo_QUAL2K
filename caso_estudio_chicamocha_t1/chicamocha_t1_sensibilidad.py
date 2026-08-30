@@ -5,7 +5,7 @@ Análisis de sensibilidad LHS / SRCC para el Río Chicamocha — Tramo T1
 (CABECERA -> PLAYA ABAJO)
 
 Modelo base: D:/Proyecto_UB_2025/PYQ2K/data/templates/Chicamocha_T1/PlantillaBaseQ2K.xlsx
-JSON base  : examples/chicamocha_t1_simulacion.json
+JSON base  : caso_estudio_chicamocha_t1/chicamocha_t1_simulacion.json
 
 Parámetros variados (33 en total)
 -----------------------------------
@@ -43,7 +43,7 @@ from scripts.sensibilidad import ParametroSensibilidad, analisis_sensibilidad
 # Rutas
 # ===========================================================================
 
-JSON_BASE  = str(_ROOT / "examples" / "chicamocha_t1_simulacion.json")
+JSON_BASE  = str(_ROOT / "caso_estudio_chicamocha_t1" / "chicamocha_t1_simulacion.json")
 OUTPUT_DIR = str(_ROOT / "resultados" / "chicamocha_t1_sensibilidad")
 
 # ===========================================================================

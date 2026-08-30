@@ -5,7 +5,7 @@ Corre la simulación QUAL2K del Río Chicamocha — Tramo T1
 (CABECERA -> PLAYA ABAJO) con los valores calibrados.
 
 Uso:
-    python examples/chicamocha_t1_simulacion.py
+    python caso_estudio_chicamocha_t1/chicamocha_t1_simulacion.py
 """
 
 import sys
@@ -17,7 +17,7 @@ if str(_ROOT) not in sys.path:
 
 from scripts.run_from_json import run_simulacion
 
-JSON = str(_ROOT / "examples" / "chicamocha_t1_simulacion.json")
+JSON = str(_ROOT / "caso_estudio_chicamocha_t1" / "chicamocha_t1_simulacion.json")
 
 if __name__ == "__main__":
     run_simulacion(JSON)
