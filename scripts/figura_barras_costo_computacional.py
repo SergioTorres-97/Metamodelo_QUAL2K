@@ -7,7 +7,7 @@ QUAL2K vs. el metamodelo (red neuronal), en funcion del numero de corridas
 acumulada) con una lectura mas directa para comparar barras.
 
 Usa los datos ya calculados en costo_computacional.xlsx (hoja
-'extrapolacion'), generados por caso_estudio_chicamocha_t1/chicamocha_t1_costo_computacional.py
+'extrapolacion'), generados por caso_estudio_t_rio_jordan/t_rio_jordan_costo_computacional.py
 -- no vuelve a correr el benchmark ni QUAL2K.
 
 Uso:
@@ -29,7 +29,7 @@ import numpy as np
 import pandas as pd
 
 _ROOT = Path(__file__).resolve().parent.parent
-OUTPUT_DIR = _ROOT / "resultados" / "chicamocha_t1_metamodelo"
+OUTPUT_DIR = _ROOT / "resultados" / "t_rio_jordan_metamodelo"
 XLSX_PATH  = OUTPUT_DIR / "costo_computacional.xlsx"
 OUT_PDF    = OUTPUT_DIR / "barras_costo_computacional.pdf"
 OUT_PNG    = OUTPUT_DIR / "barras_costo_computacional.png"

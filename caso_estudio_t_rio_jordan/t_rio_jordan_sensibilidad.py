@@ -1,11 +1,11 @@
 """
-chicamocha_t1_sensibilidad.py
+t_rio_jordan_sensibilidad.py
 ==============================
-Análisis de sensibilidad LHS / SRCC para el Río Chicamocha — Tramo T1
-(CABECERA -> PLAYA ABAJO)
+Análisis de sensibilidad LHS / SRCC para el Río Jordán — Tramo T1
+(CABECERA -> PLAYA ARRIBA)
 
-Modelo base: D:/Proyecto_UB_2025/PYQ2K/data/templates/Chicamocha_T1/PlantillaBaseQ2K.xlsx
-JSON base  : caso_estudio_chicamocha_t1/chicamocha_t1_simulacion.json
+Modelo base: D:/Proyecto_UB_2025/PYQ2K/data/templates/Rio_Jordan_T1/PlantillaBaseQ2K.xlsx
+JSON base  : caso_estudio_t_rio_jordan/t_rio_jordan_simulacion.json
 
 Parámetros variados (33 en total)
 -----------------------------------
@@ -43,8 +43,8 @@ from scripts.sensibilidad import ParametroSensibilidad, analisis_sensibilidad
 # Rutas
 # ===========================================================================
 
-JSON_BASE  = str(_ROOT / "caso_estudio_chicamocha_t1" / "chicamocha_t1_simulacion.json")
-OUTPUT_DIR = str(_ROOT / "resultados" / "chicamocha_t1_sensibilidad")
+JSON_BASE  = str(_ROOT / "caso_estudio_t_rio_jordan" / "t_rio_jordan_simulacion.json")
+OUTPUT_DIR = str(_ROOT / "resultados" / "t_rio_jordan_sensibilidad")
 
 # ===========================================================================
 # Parámetros — rangos basados en valores calibrados y límites físicos
@@ -417,7 +417,7 @@ parametros = [
 
 def _imprimir_resumen():
     print("=" * 70)
-    print("ANÁLISIS DE SENSIBILIDAD — CHICAMOCHA T1  (CABECERA → PLAYA ABAJO)")
+    print("ANÁLISIS DE SENSIBILIDAD — RÍO JORDÁN T1  (CABECERA → PLAYA ARRIBA)")
     print("=" * 70)
     print(f"{'Parámetro':<30} {'Categoría':<10} {'Campo':<22} {'[min, max]'}")
     print("-" * 70)

@@ -25,7 +25,7 @@ if str(_ROOT) not in sys.path:
 
 from metamodelo.datos import BD_PATH, TABLA, FEATURES, TARGET
 
-OUTPUT_DIR  = _ROOT / "resultados" / "chicamocha_t1_metamodelo"
+OUTPUT_DIR  = _ROOT / "resultados" / "t_rio_jordan_metamodelo"
 EXCEL_PATH  = OUTPUT_DIR / "simulaciones_Q2K.xlsx"
 
 

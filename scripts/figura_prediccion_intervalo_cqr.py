@@ -32,7 +32,7 @@ if str(_ROOT) not in sys.path:
 from metamodelo.datos      import FEATURES
 from metamodelo.nn_trainer import MLPDbo, QUANTILES_CQR
 
-OUTPUT_DIR    = _ROOT / "resultados" / "chicamocha_t1_metamodelo"
+OUTPUT_DIR    = _ROOT / "resultados" / "t_rio_jordan_metamodelo"
 MODELO_PATH   = OUTPUT_DIR / "nn_dbo_cqr.pt"
 SCALER_X_PATH = OUTPUT_DIR / "nn_scaler_x_cqr.joblib"
 SCALER_Y_PATH = OUTPUT_DIR / "nn_scaler_y_cqr.joblib"

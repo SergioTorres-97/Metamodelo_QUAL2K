@@ -17,7 +17,7 @@ from sklearn.model_selection import train_test_split
 # ---------------------------------------------------------------------------
 
 _ROOT    = Path(__file__).resolve().parent.parent
-BD_PATH  = str(_ROOT / "resultados" / "chicamocha_t1_metamodelo" / "simulaciones_Q2K.db")
+BD_PATH  = str(_ROOT / "resultados" / "t_rio_jordan_metamodelo" / "simulaciones_Q2K.db")
 TABLA    = "simulaciones"
 
 FEATURES = [

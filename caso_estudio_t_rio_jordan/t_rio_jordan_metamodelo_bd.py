@@ -1,12 +1,12 @@
 """
-chicamocha_t1_metamodelo_bd.py
+t_rio_jordan_metamodelo_bd.py
 ================================
 Genera la base de datos de entrenamiento para el metamodelo de DBO.
 
 Flujo por simulación:
   1. LHS sampling sobre 11 variables sensibles identificadas
-     (seleccionadas a partir del SRCC de chicamocha_t1_sensibilidad.py
-     sobre carbonaceous_bod_fast, corrida con la topología CABECERA -> PLAYA ABAJO)
+     (seleccionadas a partir del SRCC de t_rio_jordan_sensibilidad.py
+     sobre carbonaceous_bod_fast, corrida con la topología CABECERA -> PLAYA ARRIBA)
   2. Para cada muestra → modifica el JSON base y corre QUAL2K
   3. Extrae DBO (carbonaceous_bod_fast) en los 52 elementos computacionales
   4. Acumula en SQLite (simulaciones_Q2K.db), tabla: simulaciones
@@ -27,7 +27,7 @@ Esquema de la tabla 'simulaciones':
   x_km            REAL
   dbo_mg_L        REAL
 
-Variables sensibles (rangos tomados de chicamocha_t1_sensibilidad.py):
+Variables sensibles (rangos tomados de t_rio_jordan_sensibilidad.py):
   - alpha_1         : Parámetro hidráulico α₁       [0.03  – 0.40]  absoluto
   - kaaa            : Reaireación                   [0.5   – 3.0]   ×cal  relativo
   - kdc             : Oxidación DBO rápida          [0.3   – 3.0]   ×cal  relativo
@@ -43,9 +43,9 @@ Variables sensibles (rangos tomados de chicamocha_t1_sensibilidad.py):
 Variables no sensibles → fijas en su valor calibrado (JSON base).
 
 Uso:
-    python caso_estudio_chicamocha_t1/chicamocha_t1_metamodelo_bd.py
-    python caso_estudio_chicamocha_t1/chicamocha_t1_metamodelo_bd.py --n 500 --seed 99
-    python caso_estudio_chicamocha_t1/chicamocha_t1_metamodelo_bd.py --n 100 --continuar
+    python caso_estudio_t_rio_jordan/t_rio_jordan_metamodelo_bd.py
+    python caso_estudio_t_rio_jordan/t_rio_jordan_metamodelo_bd.py --n 500 --seed 99
+    python caso_estudio_t_rio_jordan/t_rio_jordan_metamodelo_bd.py --n 100 --continuar
 """
 
 from __future__ import annotations
@@ -78,8 +78,8 @@ _ROOT = Path(__file__).resolve().parent.parent
 if str(_ROOT) not in sys.path:
     sys.path.insert(0, str(_ROOT))
 
-JSON_BASE  = str(_ROOT / "caso_estudio_chicamocha_t1" / "chicamocha_t1_simulacion.json")
-OUTPUT_DIR = str(_ROOT / "resultados" / "chicamocha_t1_metamodelo")
+JSON_BASE  = str(_ROOT / "caso_estudio_t_rio_jordan" / "t_rio_jordan_simulacion.json")
+OUTPUT_DIR = str(_ROOT / "resultados" / "t_rio_jordan_metamodelo")
 BD_PATH    = str(Path(OUTPUT_DIR) / "simulaciones_Q2K.db")
 TABLA      = "simulaciones"
 RUNS_DIR   = str(Path(OUTPUT_DIR) / "_runs")
@@ -404,7 +404,7 @@ def generar_bd(n: int = 500, seed: int = 42, continuar: bool = False, n_workers:
 
     # ── Encabezado ────────────────────────────────────────────────────────────
     print("=" * 65)
-    print("GENERACIÓN DE BD — METAMODELO DBO — CHICAMOCHA T1")
+    print("GENERACIÓN DE BD — METAMODELO DBO — RÍO JORDÁN T1")
     print(f"  BD SQLite             : {BD_PATH}")
     print(f"  Tabla                 : {TABLA}")
     print(f"  Simulaciones a correr : {n - sim_inicio}")
@@ -493,7 +493,7 @@ def generar_bd(n: int = 500, seed: int = 42, continuar: bool = False, n_workers:
 
 def _build_parser() -> argparse.ArgumentParser:
     p = argparse.ArgumentParser(
-        prog="chicamocha_t1_metamodelo_bd",
+        prog="t_rio_jordan_metamodelo_bd",
         description="Genera la BD SQLite de entrenamiento para el metamodelo DBO.",
     )
     p.add_argument(

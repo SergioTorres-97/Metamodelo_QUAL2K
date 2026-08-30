@@ -57,7 +57,7 @@ from metamodelo.metricas import calcular, intervalo_conformal, intervalo_cqr
 # Rutas de salida
 # ---------------------------------------------------------------------------
 
-OUTPUT_DIR      = _ROOT / "resultados" / "chicamocha_t1_metamodelo"
+OUTPUT_DIR      = _ROOT / "resultados" / "t_rio_jordan_metamodelo"
 MODELO_PATH     = OUTPUT_DIR / "nn_dbo.pt"
 SCALER_X_PATH   = OUTPUT_DIR / "nn_scaler_x.joblib"
 SCALER_Y_PATH   = OUTPUT_DIR / "nn_scaler_y.joblib"

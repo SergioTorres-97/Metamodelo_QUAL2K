@@ -1,9 +1,9 @@
 """
-chicamocha_t1_costo_computacional.py
+t_rio_jordan_costo_computacional.py
 =====================================
 Compara el costo computacional (tiempo de cómputo) entre el modelo
 convencional QUAL2K (FORTRAN) y el metamodelo Red Neuronal (MLP,
-metamodelo/nn_trainer.py) para el tramo T1 del río Chicamocha.
+metamodelo/nn_trainer.py) para el tramo T1 del río Jordán.
 
 No evalúa precisión — eso ya se hizo con el lote de mediciones/test set
 existente (ver resultados_nn.xlsx). Este script mide únicamente tiempo
@@ -14,7 +14,7 @@ global, análisis de incertidumbre).
 Metodología:
   1. Genera N escenarios aleatorios (LHS) sobre las mismas 16 variables
      sensibles usadas para construir la BD de entrenamiento
-     (caso_estudio_chicamocha_t1/chicamocha_t1_metamodelo_bd.py).
+     (caso_estudio_t_rio_jordan/t_rio_jordan_metamodelo_bd.py).
   2. Para cada escenario:
        - Corre QUAL2K completo (escritura config + ejecución FORTRAN +
          lectura de resultados) y mide el tiempo de pared.
@@ -29,8 +29,8 @@ para comparar en igualdad de condiciones de hardware con QUAL2K, que
 corre en CPU. Con GPU el metamodelo sería aún más rápido.
 
 Uso:
-    python caso_estudio_chicamocha_t1/chicamocha_t1_costo_computacional.py
-    python caso_estudio_chicamocha_t1/chicamocha_t1_costo_computacional.py --n 30 --seed 7
+    python caso_estudio_t_rio_jordan/t_rio_jordan_costo_computacional.py
+    python caso_estudio_t_rio_jordan/t_rio_jordan_costo_computacional.py --n 30 --seed 7
 """
 
 from __future__ import annotations
@@ -58,13 +58,13 @@ import matplotlib.pyplot as plt
 _ROOT = Path(__file__).resolve().parent.parent
 if str(_ROOT) not in sys.path:
     sys.path.insert(0, str(_ROOT))
-if str(_ROOT / "caso_estudio_chicamocha_t1") not in sys.path:
-    sys.path.insert(0, str(_ROOT / "caso_estudio_chicamocha_t1"))
+if str(_ROOT / "caso_estudio_t_rio_jordan") not in sys.path:
+    sys.path.insert(0, str(_ROOT / "caso_estudio_t_rio_jordan"))
 
 # Reutiliza el generador de escenarios LHS y el runner de QUAL2K ya
 # escritos para construir la BD de entrenamiento — misma parametrización,
 # mismo código de ejecución, cero duplicación de esa lógica.
-import chicamocha_t1_metamodelo_bd as bdmod
+import t_rio_jordan_metamodelo_bd as bdmod
 
 from metamodelo.datos      import FEATURES
 from metamodelo.nn_trainer import MLPDbo
@@ -73,7 +73,7 @@ from metamodelo.nn_trainer import MLPDbo
 # Rutas
 # ---------------------------------------------------------------------------
 
-OUTPUT_DIR    = _ROOT / "resultados" / "chicamocha_t1_metamodelo"
+OUTPUT_DIR    = _ROOT / "resultados" / "t_rio_jordan_metamodelo"
 MODELO_PATH   = OUTPUT_DIR / "nn_dbo.pt"
 SCALER_X_PATH = OUTPUT_DIR / "nn_scaler_x.joblib"
 SCALER_Y_PATH = OUTPUT_DIR / "nn_scaler_y.joblib"
@@ -357,7 +357,7 @@ def _grafica_comparacion(df: pd.DataFrame, resumen: dict):
 
 def _build_parser() -> argparse.ArgumentParser:
     p = argparse.ArgumentParser(
-        prog="chicamocha_t1_costo_computacional",
+        prog="t_rio_jordan_costo_computacional",
         description="Compara el tiempo de cómputo QUAL2K vs metamodelo (NN).",
     )
     p.add_argument("--n",    type=int, default=30, help="N° de escenarios LHS (default: 30).")

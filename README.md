@@ -2,7 +2,7 @@
 
 PYQ2K es una interfaz en Python para el modelo de calidad de agua **QUAL2K**, cuyo motor de cálculo es un ejecutable FORTRAN. Automatiza la preparación de datos desde plantillas Excel o JSON, la ejecución del modelo, el análisis de resultados y la calibración mediante algoritmo genético.
 
-Sobre esa base se construyó, para el caso de estudio del tramo T1 del río Chicamocha, un flujo completo de **análisis de sensibilidad global**, generación de una **base de datos de escenarios**, entrenamiento y optimización de **metamodelos** (XGBoost, LightGBM, CatBoost y una red neuronal), validación de su **eficiencia computacional** frente a QUAL2K, y una **aplicación interactiva** (Streamlit) que sirve el metamodelo entrenado.
+Sobre esa base se construyó, para el caso de estudio del tramo T1 del río Jordán, un flujo completo de **análisis de sensibilidad global**, generación de una **base de datos de escenarios**, entrenamiento y optimización de **metamodelos** (XGBoost, LightGBM, CatBoost y una red neuronal), validación de su **eficiencia computacional** frente a QUAL2K, y una **aplicación interactiva** (Streamlit) que sirve el metamodelo entrenado.
 
 La metodología detallada de todo este flujo — no solo el resumen de este README — está en **[`docs/metodologia.md`](docs/metodologia.md)**.
 
@@ -41,7 +41,7 @@ Los scripts que usan plantillas Excel (`model/modelo_chicamocha.py`, `tests/*.py
 data/templates/<nombre_tramo>/PlantillaBaseQ2K.xlsx
 ```
 
-Los scripts basados en JSON (`caso_estudio_chicamocha_t1/`, `scripts/sensibilidad.py`) no requieren estas plantillas — usan `caso_estudio_chicamocha_t1/chicamocha_t1_simulacion.json` directamente.
+Los scripts basados en JSON (`caso_estudio_t_rio_jordan/`, `scripts/sensibilidad.py`) no requieren estas plantillas — usan `caso_estudio_t_rio_jordan/t_rio_jordan_simulacion.json` directamente.
 
 El ejecutable FORTRAN `bin/q2kfortran2_12.exe` **sí está incluido** y se copia automáticamente al directorio de trabajo al ejecutar cada simulación.
 
@@ -80,12 +80,12 @@ PYQ2K/
 │   ├── figura_srcc_explicacion.py     # Figura didáctica: cómo se calcula el SRCC espacial
 │   └── lr_diagnostico.py              # Diagnóstico de supuestos de regresión lineal
 │
-├── caso_estudio_chicamocha_t1/        # Caso de estudio Chicamocha T1
-│   ├── chicamocha_t1_simulacion.json  # Configuración base calibrada del tramo T1
-│   ├── chicamocha_t1_simulacion.py    # Corre una simulación individual (JSON)
-│   ├── chicamocha_t1_sensibilidad.py  # Análisis de sensibilidad (36 parámetros, LHS+SRCC)
-│   ├── chicamocha_t1_metamodelo_bd.py # Genera la BD SQLite de escenarios (LHS)
-│   └── chicamocha_t1_costo_computacional.py  # QUAL2K vs metamodelo: tiempos de cómputo
+├── caso_estudio_t_rio_jordan/        # Caso de estudio Río Jordán T1
+│   ├── t_rio_jordan_simulacion.json  # Configuración base calibrada del tramo T1
+│   ├── t_rio_jordan_simulacion.py    # Corre una simulación individual (JSON)
+│   ├── t_rio_jordan_sensibilidad.py  # Análisis de sensibilidad (36 parámetros, LHS+SRCC)
+│   ├── t_rio_jordan_metamodelo_bd.py # Genera la BD SQLite de escenarios (LHS)
+│   └── t_rio_jordan_costo_computacional.py  # QUAL2K vs metamodelo: tiempos de cómputo
 │
 ├── metamodelo/                        # Entrenamiento de metamodelos de DBO
 │   ├── datos.py                       # Carga la BD SQLite, define FEATURES/TARGET, split
@@ -138,9 +138,9 @@ PlantillaBaseQ2K.xlsx  o  configuracion.json
 
 ---
 
-## Caso de estudio: cuenca del río Chicamocha
+## Caso de estudio: sistema fluvial Jordán-Chicamocha
 
-Incluye la calibración del modelo QUAL2K para el río Chicamocha completo (7 reaches, `model/modelo_chicamocha.py`), y un análisis detallado del **tramo T1** (`CABECERA` → `PLAYA ABAJO`, 28.57 km, `caso_estudio_chicamocha_t1/chicamocha_t1_*`) sobre el cual se construyó todo el flujo de metamodelado.
+Incluye la calibración del modelo QUAL2K para el río Chicamocha completo (7 reaches, `model/modelo_chicamocha.py`), y un análisis detallado del **tramo T1 del río Jordán** (`CABECERA` → `PLAYA ARRIBA`, 28.57 km, `caso_estudio_t_rio_jordan/t_rio_jordan_*`) sobre el cual se construyó todo el flujo de metamodelado.
 
 La métrica de calibración principal es el **KGE (Kling-Gupta Efficiency)**, calculado sobre múltiples parámetros de calidad del agua (OD, DBO, NTK, NH₄, fósforo, *E. coli*, entre otros).
 
@@ -152,30 +152,30 @@ Metodología completa en **[`docs/metodologia.md`](docs/metodologia.md)**. Resum
 
 ```bash
 # 1. Simulación individual del tramo T1 (config. calibrada)
-python caso_estudio_chicamocha_t1/chicamocha_t1_simulacion.py
+python caso_estudio_t_rio_jordan/t_rio_jordan_simulacion.py
 
 # 2. Análisis de sensibilidad global (LHS + SRCC, 36 parámetros)
-python caso_estudio_chicamocha_t1/chicamocha_t1_sensibilidad.py
+python caso_estudio_t_rio_jordan/t_rio_jordan_sensibilidad.py
 
 # 3. Generar la base de datos de entrenamiento (LHS sobre 16 variables sensibles)
-python caso_estudio_chicamocha_t1/chicamocha_t1_metamodelo_bd.py --n 6000
+python caso_estudio_t_rio_jordan/t_rio_jordan_metamodelo_bd.py --n 6000
 
 # 4. Entrenar un metamodelo (ejemplo: XGBoost, con búsqueda de hiperparámetros)
 python metamodelo/xgboost_trainer.py
 # variantes equivalentes: lgbm_trainer.py, catboost_trainer.py, nn_trainer.py
 
 # 5. Comparar el costo computacional QUAL2K vs metamodelo (NN)
-python caso_estudio_chicamocha_t1/chicamocha_t1_costo_computacional.py --n 100
+python caso_estudio_t_rio_jordan/t_rio_jordan_costo_computacional.py --n 100
 
 # 6. App interactiva de predicción (sirve el metamodelo NN entrenado)
 streamlit run app_streamlit.py
 ```
 
-Cada script en `caso_estudio_chicamocha_t1/` y `metamodelo/` imprime sus rutas de salida (Excel, figuras, modelos serializados) en `resultados/chicamocha_t1_sensibilidad/` y `resultados/chicamocha_t1_metamodelo/`.
+Cada script en `caso_estudio_t_rio_jordan/` y `metamodelo/` imprime sus rutas de salida (Excel, figuras, modelos serializados) en `resultados/t_rio_jordan_sensibilidad/` y `resultados/t_rio_jordan_metamodelo/`.
 
 ### App interactiva
 
-`app_streamlit.py` sirve directamente el metamodelo de red neuronal ya entrenado (no ejecuta QUAL2K/FORTRAN): permite ajustar los 16 predictores del tramo con sliders y predecir la DBO en uno o varios puntos longitudinales, con su intervalo de predicción al 95 % (conformal prediction). Requiere que `resultados/chicamocha_t1_metamodelo/` contenga `nn_dbo.pt`, `nn_scaler_x.joblib`, `nn_scaler_y.joblib` y `nn_conformal.json` (generados por `metamodelo/nn_trainer.py`).
+`app_streamlit.py` sirve directamente el metamodelo de red neuronal ya entrenado (no ejecuta QUAL2K/FORTRAN): permite ajustar los 16 predictores del tramo con sliders y predecir la DBO en uno o varios puntos longitudinales, con su intervalo de predicción al 95 % (conformal prediction). Requiere que `resultados/t_rio_jordan_metamodelo/` contenga `nn_dbo.pt`, `nn_scaler_x.joblib`, `nn_scaler_y.joblib` y `nn_conformal.json` (generados por `metamodelo/nn_trainer.py`).
 
 ---
 

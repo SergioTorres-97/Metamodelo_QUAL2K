@@ -35,7 +35,7 @@ sys.path.insert(0, str(_ROOT))
 
 from metamodelo.datos import cargar_datos, FEATURES, TARGET
 
-FIGS_DIR = _ROOT / "resultados" / "chicamocha_t1_metamodelo" / "figuras_lr_diagnostico"
+FIGS_DIR = _ROOT / "resultados" / "t_rio_jordan_metamodelo" / "figuras_lr_diagnostico"
 FIGS_DIR.mkdir(parents=True, exist_ok=True)
 
 

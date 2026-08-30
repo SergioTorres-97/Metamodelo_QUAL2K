@@ -61,7 +61,7 @@ from metamodelo.metricas import calcular
 # Rutas de salida
 # ---------------------------------------------------------------------------
 
-OUTPUT_DIR  = _ROOT / "resultados" / "chicamocha_t1_metamodelo"
+OUTPUT_DIR  = _ROOT / "resultados" / "t_rio_jordan_metamodelo"
 MODELO_PATH = OUTPUT_DIR / "catboost_dbo.joblib"
 FIGS_DIR    = OUTPUT_DIR / "figuras_catboost"
 

@@ -1,11 +1,11 @@
 {
-  "_descripcion": "Chicamocha T1 - generado desde PlantillaBaseQ2K.xlsx",
+  "_descripcion": "Rio Jordan T1 - generado desde PlantillaBaseQ2K.xlsx",
   "header": {
     "version": "v2.12",
-    "rivname": "Chicamocha",
-    "filename": "Chicamocha_T1_json",
-    "filedir": "D:/Maestria/Proyecto_de_grado/PYQ2K/resultados/chicamocha_t1_modelo",
-    "applabel": "Chicamocha T1",
+    "rivname": "Rio Jordan",
+    "filename": "Rio_Jordan_T1_json",
+    "filedir": "D:/Maestria/Proyecto_de_grado/PYQ2K/resultados/t_rio_jordan_modelo",
+    "applabel": "Rio Jordan T1",
     "xmon": 6,
     "xday": 27,
     "xyear": 2012,
@@ -24,7 +24,7 @@
   "reaches": [
     {
       "est_arriba": "CABECERA",
-      "est_abajo": "PLAYA ABAJO",
+      "est_abajo": "PLAYA ARRIBA",
       "nombre_tramo": "TRAMO_1",
       "x_arriba": 28.56819916,
       "x_abajo": 0.0,
@@ -397,7 +397,7 @@
     "NIPpupmax": 0.001
   },
   "reach_rates": {
-    "_comentario": "Tasas cineticas calibradas para T1 (CABECERA -> PLAYA ABAJO)",
+    "_comentario": "Tasas cineticas calibradas para T1 (CABECERA -> PLAYA ARRIBA)",
     "kaaa": [1.82],
     "kdc":  [0.565],
     "kn":   [0.34],

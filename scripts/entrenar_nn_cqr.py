@@ -8,7 +8,7 @@ como punto de partida; no repite la busqueda.
 
 No sobrescribe ningun artefacto del modelo puntual (nn_dbo.pt, nn_conformal.json):
 genera nn_dbo_cqr.pt, nn_cqr.json y las figuras en figuras_nn_cqr/, todo bajo
-resultados/chicamocha_t1_metamodelo/.
+resultados/t_rio_jordan_metamodelo/.
 
 Uso:
     python scripts/entrenar_nn_cqr.py
