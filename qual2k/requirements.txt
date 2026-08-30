@@ -1,0 +1,33 @@
+# Dependencias directas del paquete qual2k
+# Generado con: pip freeze | grep <paquete>
+# Actualizado: 2026-04-13
+
+# Datos y cálculo
+numpy==2.3.5
+pandas==2.3.3
+scipy==1.16.3
+scikit-learn
+joblib
+
+# Lectura de Excel
+openpyxl==3.1.5
+
+# Visualización
+matplotlib==3.10.7
+seaborn==0.13.2
+
+# Calibración (algoritmo genético)
+pygad==3.5.0
+
+# Metamodelo
+xgboost
+lightgbm
+catboost==1.2.10
+torch
+optuna==4.8.0
+colorlog
+statsmodels
+
+# Aplicativo de predicción (app_streamlit.py)
+streamlit
+plotly

@@ -1,0 +1,51 @@
+# Python
+__pycache__/
+*.py[cod]
+*.pyo
+*.pyd
+*.pyc
+.Python
+
+# Virtual environment
+.venv/
+venv/
+ENV/
+
+# Build / packaging
+*.egg-info/
+dist/
+build/
+*.egg
+.eggs/
+
+# IDE
+.vscode/
+.idea/
+*.sublime-project
+*.sublime-workspace
+
+# OS
+.DS_Store
+Thumbs.db
+desktop.ini
+
+# Django
+webapp/db.sqlite3
+webapp/media/*
+!webapp/media/runs/
+webapp/media/runs/*
+!webapp/media/runs/.gitkeep
+webapp/static/collected/
+
+# Data de modelos (templates y resultados)
+data/
+
+# Resultados de simulaciones / sensibilidad (output generado)
+resultados/
+
+# Excel lock files (temporales de Excel)
+~$*.xlsx
+~$*.xls
+
+# Logs
+*.log

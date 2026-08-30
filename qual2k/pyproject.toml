@@ -1,0 +1,35 @@
+[build-system]
+requires = ["setuptools>=61"]
+build-backend = "setuptools.build_meta"
+
+[project]
+name = "qual2k"
+version = "1.0.0"
+requires-python = ">=3.10"
+dependencies = [
+    "pandas",
+    "numpy",
+    "matplotlib",
+    "openpyxl",
+    "scipy",
+    "seaborn",
+    "scikit-learn",
+    "joblib",
+    "pygad",
+    # Metamodelo
+    "xgboost",
+    "lightgbm",
+    "catboost",
+    "torch",
+    "optuna",
+    "colorlog",
+    "statsmodels",
+    # Aplicativo de predicción (app_streamlit.py)
+    "streamlit",
+    "plotly",
+]
+
+[tool.setuptools.packages.find]
+# Busca desde el directorio padre (PYQ2K/) para encontrar el paquete qual2k/
+where = [".."]
+include = ["qual2k*"]
