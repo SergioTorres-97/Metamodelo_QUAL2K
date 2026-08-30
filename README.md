@@ -12,7 +12,7 @@ Escuela Colombiana de Ingeniería Julio Garavito
 
 ## Descripción general
 
-Este repositorio contiene el desarrollo completo del proyecto de grado: una interfaz en Python para el modelo de calidad de agua **QUAL2K** (cuyo motor de cálculo es un ejecutable FORTRAN), construida para automatizar la preparación de datos, la ejecución del modelo, el análisis de resultados y la calibración mediante algoritmo genético.
+Este repositorio contiene el desarrollo completo del proyecto de grado: una interfaz en Python para el modelo de calidad de agua **QUAL2K** (cuyo motor de cálculo es un ejecutable FORTRAN), construida para automatizar la preparación de datos, la ejecución del modelo y el análisis de resultados.
 
 Sobre esa base se construyó, para el caso de estudio del **tramo T1 del río Jordán** (Tunja), un flujo completo de:
 
@@ -22,7 +22,7 @@ Sobre esa base se construyó, para el caso de estudio del **tramo T1 del río Jo
 - Validación de su **eficiencia computacional** frente al modelo mecanicista.
 - Una **aplicación interactiva** (Streamlit) que sirve el metamodelo entrenado para predicción de DBO en tiempo real.
 
-La metodología detallada de todo este flujo — no solo el resumen de este README — está en **[`docs/metodologia.md`](docs/metodologia.md)**.
+La metodología detallada de todo este flujo — no solo el resumen de este README — está documentada en `docs/metodologia.md` (mantenida local, no publicada en este repositorio).
 
 ---
 
@@ -76,10 +76,7 @@ Metamodelo_QUAL2K/
 │   ├── core/
 │   │   ├── model.py                   # Q2KModel — orquestador principal
 │   │   ├── config.py                  # Gestión de parámetros y tasas cinéticas
-│   │   ├── simulator.py               # Wrapper para ejecución del .exe
-│   │   ├── calibrator.py              # Calibración con algoritmo genético (pygad)
-│   │   ├── calibrator_general.py      # Pipeline de calibración multi-tramo
-│   │   └── calibrator_global.py       # Calibración global (múltiples parámetros a la vez)
+│   │   └── simulator.py               # Wrapper para ejecución del .exe
 │   ├── processing/
 │   │   ├── data_processor.py          # Lee Excel → diccionarios
 │   │   ├── file_writer.py             # Escribe archivos .q2k
@@ -118,15 +115,10 @@ Metamodelo_QUAL2K/
 ├── app_streamlit.py                   # App interactiva: predicción de DBO con el metamodelo NN
 ├── assets/logo_escuela.png            # Logo institucional usado por la app
 ├── .streamlit/config.toml             # Tema visual de la app
-│
-├── docs/
-│   └── metodologia.md                 # Metodología completa (las 6 fases + app)
-│
-├── tests/                             # Scripts de prueba y calibración (tramos antiguos)
-├── data/                              # Plantillas Excel (no versionadas)
-│   └── templates/
-└── resultados/                        # Salidas: sensibilidad, BD, modelos entrenados, figuras
+└── tests/                             # Scripts de prueba (tramos antiguos)
 ```
+
+> `docs/` (metodología completa), `data/` (plantillas Excel) y `resultados/` (salidas generadas) existen en el proyecto pero no se versionan en este repositorio.
 
 ---
 
@@ -168,7 +160,7 @@ La métrica de calibración principal es el **KGE (Kling-Gupta Efficiency)**, ca
 
 ## Flujo de trabajo del metamodelo (tramo T1)
 
-Metodología completa en **[`docs/metodologia.md`](docs/metodologia.md)**. Resumen ejecutable:
+Metodología completa en `docs/metodologia.md` (local, no publicada). Resumen ejecutable:
 
 ```bash
 # 1. Simulación individual del tramo T1 (config. calibrada)
@@ -211,7 +203,6 @@ Cada script en `caso_estudio_t_rio_jordan/` y `metamodelo/` imprime sus rutas de
 | `torch` | Red neuronal (MLP) |
 | `optuna` | Optimización bayesiana de hiperparámetros (TPE) |
 | `statsmodels` | Diagnóstico de supuestos de regresión lineal |
-| `pygad` | Algoritmo genético para calibración de QUAL2K |
 | `streamlit` | App interactiva de predicción |
 
 Ver [`qual2k/requirements.txt`](qual2k/requirements.txt) para versiones exactas.

@@ -5,10 +5,8 @@ Script de ejecución del modelo QUAL2K calibrado para el río Chicamocha complet
 
 > Los scripts que existían aquí para Canal Vargas (`modelo_vargas.py`), el
 > Tramo 3S / R. Tota-Chiquito (`modelo_tota_chiquito.py`) y el pipeline
-> encadenado (`pipeline_modelo_calidad.py`) fueron retirados. Quedan
-> referencias sueltas a esos tramos en `tests/uso_basico.py` (Canal Vargas) y
-> `tests/pruebas.py` (Tramo 3S), como ejemplos de calibración con
-> `qual2k.core.calibrator`.
+> encadenado (`pipeline_modelo_calidad.py`) fueron retirados. Queda una
+> referencia suelta a ese tramo en `tests/uso_basico.py` (Canal Vargas).
 
 ## Archivo
 

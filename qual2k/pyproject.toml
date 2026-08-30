@@ -15,7 +15,6 @@ dependencies = [
     "seaborn",
     "scikit-learn",
     "joblib",
-    "pygad",
     # Metamodelo
     "xgboost",
     "lightgbm",

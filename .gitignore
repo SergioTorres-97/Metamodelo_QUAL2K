@@ -52,3 +52,10 @@ resultados/
 
 # Documentación de tesis (mantenida local, no publicada en el repo)
 docs/
+
+# Calibradores multi-tramo (mantenidos locales, no publicados en el repo)
+qual2k/core/calibrator.py
+qual2k/core/calibrator_general.py
+qual2k/core/calibrator_global.py
+tests/pruebas.py
+tests/calibration.py

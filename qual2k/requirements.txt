@@ -16,9 +16,6 @@ openpyxl==3.1.5
 matplotlib==3.10.7
 seaborn==0.13.2
 
-# Calibración (algoritmo genético)
-pygad==3.5.0
-
 # Metamodelo
 xgboost
 lightgbm
