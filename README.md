@@ -2,7 +2,7 @@
 
 PYQ2K es una interfaz en Python para el modelo de calidad de agua **QUAL2K**, cuyo motor de cálculo es un ejecutable FORTRAN. Automatiza la preparación de datos desde plantillas Excel o JSON, la ejecución del modelo, el análisis de resultados y la calibración mediante algoritmo genético.
 
-Sobre esa base se construyó, para el caso de estudio del tramo T1 del río Chicamocha, un flujo completo de **análisis de sensibilidad global**, generación de una **base de datos de escenarios**, entrenamiento y optimización de **metamodelos** (Random Forest, ExtraTrees, XGBoost, LightGBM, CatBoost y una red neuronal), validación de su **eficiencia computacional** frente a QUAL2K, y una **aplicación interactiva** (Streamlit) que sirve el metamodelo entrenado.
+Sobre esa base se construyó, para el caso de estudio del tramo T1 del río Chicamocha, un flujo completo de **análisis de sensibilidad global**, generación de una **base de datos de escenarios**, entrenamiento y optimización de **metamodelos** (XGBoost, LightGBM, CatBoost y una red neuronal), validación de su **eficiencia computacional** frente a QUAL2K, y una **aplicación interactiva** (Streamlit) que sirve el metamodelo entrenado.
 
 La metodología detallada de todo este flujo — no solo el resumen de este README — está en **[`docs/metodologia.md`](docs/metodologia.md)**.
 
@@ -90,7 +90,6 @@ PYQ2K/
 ├── metamodelo/                        # Entrenamiento de metamodelos de DBO
 │   ├── datos.py                       # Carga la BD SQLite, define FEATURES/TARGET, split
 │   ├── metricas.py                    # R², RMSE, MAE, bias + intervalo conformal
-│   ├── rf_trainer.py                  # Random Forest / ExtraTrees + Optuna (OOB)
 │   ├── xgboost_trainer.py             # XGBoost + Optuna (early stopping)
 │   ├── lgbm_trainer.py                # LightGBM + Optuna (early stopping)
 │   ├── catboost_trainer.py            # CatBoost + Optuna (early stopping)
@@ -161,9 +160,9 @@ python examples/chicamocha_t1_sensibilidad.py
 # 3. Generar la base de datos de entrenamiento (LHS sobre 16 variables sensibles)
 python examples/chicamocha_t1_metamodelo_bd.py --n 6000
 
-# 4. Entrenar un metamodelo (ejemplo: Random Forest, con búsqueda de hiperparámetros)
-python metamodelo/rf_trainer.py
-# variantes equivalentes: xgboost_trainer.py, lgbm_trainer.py, catboost_trainer.py, nn_trainer.py
+# 4. Entrenar un metamodelo (ejemplo: XGBoost, con búsqueda de hiperparámetros)
+python metamodelo/xgboost_trainer.py
+# variantes equivalentes: lgbm_trainer.py, catboost_trainer.py, nn_trainer.py
 
 # 5. Comparar el costo computacional QUAL2K vs metamodelo (NN)
 python examples/chicamocha_t1_costo_computacional.py --n 100
@@ -187,7 +186,7 @@ Cada script en `examples/` y `metamodelo/` imprime sus rutas de salida (Excel, f
 | `pandas`, `numpy`, `scipy` | Manejo de datos, muestreo LHS, estadística |
 | `matplotlib`, `seaborn`, `plotly` | Visualización estática e interactiva |
 | `openpyxl` | Lectura/escritura de archivos Excel |
-| `scikit-learn` | Random Forest, ExtraTrees, splits, métricas, permutation importance |
+| `scikit-learn` | Splits, métricas, permutation importance |
 | `xgboost`, `lightgbm`, `catboost` | Metamodelos de boosting |
 | `torch` | Red neuronal (MLP) |
 | `optuna` | Optimización bayesiana de hiperparámetros (TPE) |

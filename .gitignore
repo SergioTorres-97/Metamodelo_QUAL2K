@@ -49,3 +49,6 @@ resultados/
 
 # Logs
 *.log
+
+# Documentación de tesis (mantenida local, no publicada en el repo)
+docs/
