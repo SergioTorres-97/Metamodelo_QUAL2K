@@ -41,7 +41,8 @@ webapp/static/collected/
 data/
 
 # Resultados de simulaciones / sensibilidad (output generado)
-resultados/
+# resultados/ se publica, excepto la base de datos de simulaciones (>100 MB, límite de GitHub)
+resultados/**/simulaciones_Q2K.db
 
 # Excel lock files (temporales de Excel)
 ~$*.xlsx

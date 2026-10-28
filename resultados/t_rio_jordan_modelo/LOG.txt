@@ -1,0 +1,4 @@
+ message.dat file read properly
+ Euler                         
+ Brent                         
+ Sediment simulation option: On

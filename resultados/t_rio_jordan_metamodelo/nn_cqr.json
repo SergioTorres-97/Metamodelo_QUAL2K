@@ -1,0 +1,18 @@
+{
+  "90%": {
+    "alpha": 0.1,
+    "cobertura_nominal": 0.9,
+    "q_correction": -0.7966673232421861,
+    "n": 104000,
+    "cuantil_lo": 0.05,
+    "cuantil_hi": 0.95
+  },
+  "95%": {
+    "alpha": 0.05,
+    "cobertura_nominal": 0.95,
+    "q_correction": -1.092379280273434,
+    "n": 104000,
+    "cuantil_lo": 0.025,
+    "cuantil_hi": 0.975
+  }
+}

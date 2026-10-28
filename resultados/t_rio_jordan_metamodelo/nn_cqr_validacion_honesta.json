@@ -1,0 +1,18 @@
+{
+  "90%": {
+    "picp": 0.8982692307692308,
+    "mpiw_mg_L": 6.624946117401123,
+    "ancho_min_mg_L": 0.0,
+    "ancho_max_mg_L": 133.5460968017578,
+    "n_calibracion": 104000,
+    "n_evaluacion": 104000
+  },
+  "95%": {
+    "picp": 0.9457403846153846,
+    "mpiw_mg_L": 8.229212760925293,
+    "ancho_min_mg_L": 0.0,
+    "ancho_max_mg_L": 151.88902282714844,
+    "n_calibracion": 104000,
+    "n_evaluacion": 104000
+  }
+}
